@@ -1,5 +1,5 @@
 import numpy as np
-import math
+
 
 #used to calculate the EAR and MAR based on landmarks
 

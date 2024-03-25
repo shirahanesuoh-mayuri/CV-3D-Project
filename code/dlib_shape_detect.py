@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import os
 
+
 #get landmarks from image.
 
 detector = dlib.get_frontal_face_detector()

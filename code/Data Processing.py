@@ -1,6 +1,7 @@
 import os
 import numpy as np
 
+
 import dlib_shape_detect as D
 import EAR_MAR_compute as C
 
@@ -30,7 +31,7 @@ def S_landmarks(landMarks,img_path):
     np.save(file_path, landMarks)
 
 #calculate and storage EAR and MAR
-def EAR_MAR_cpt(landMarks):
+def EAR_MAR_cpt(landMarks,img_path):
     n_faces = landMarks.shape[0]
     EAR_L = np.zeros(n_faces)
     EAR_R = np.zeros(n_faces)
@@ -44,11 +45,14 @@ def EAR_MAR_cpt(landMarks):
         EAR_L[i] = C.EAR_cpt(left_Eye_LM)
         EAR_R[i] = C.EAR_cpt(right_Eye_LM)
         MAR[i] = C.MAR_cpt(mouth_LM)
-    Features = G_Feature(EAR_L, EAR_R, MAR)
+    Features = G_Feature(EAR_L, EAR_R, MAR,img_path)
     return Features
 
-def G_Feature(EAR_L, EAR_R, MAR): #combine the EAR and MAR to a matrix
+def G_Feature(EAR_L, EAR_R, MAR, img_path): #combine the EAR and MAR to a matrix, add label
+    label = os.path.basename(img_path)
     Feature = np.stack((EAR_L, EAR_R, MAR), axis= 1)
+    label_vector = np.full((Feature.shape[0], 1), label)
+    Feature = np.hstack((Feature, label_vector))
     return Feature
 
 def S_Features(Feature, img_path):
@@ -60,11 +64,13 @@ def S_Features(Feature, img_path):
     np.save(file_path, Feature)
 
 
+
 img_path = input("数据所在目录:")
 landMarks = G_landmark(img_path)
-Features = EAR_MAR_cpt(landMarks)
+Features = EAR_MAR_cpt(landMarks,img_path)
 S_Features(Features, img_path)
 S_landmarks(landMarks, img_path)
+
 
 
 

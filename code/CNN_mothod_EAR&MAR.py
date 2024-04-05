@@ -10,8 +10,8 @@ from sklearn.model_selection import train_test_split, cross_val_score
 #code for gpu training on COLAB
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-ture_Set = np.load("dataset/Drowsy/EAR&MAR.npy")
-false_Set = np.load("dataset/Non_drowsy/EAR&MAR.npy")
+ture_Set = np.load("dataset/Drowsy/EAR&MAR_D.npy")
+false_Set = np.load("dataset/Non_drowsy/EAR&MAR_ND.npy")
 #combine the ture&false set to a tensor with size [40000, 4]
 dataset = np.vstack((ture_Set[:, :3], false_Set[:, :3]))
 labelset = np.hstack((ture_Set[:, 3], false_Set[:, 3]))
@@ -62,10 +62,12 @@ class CNN(nn.Module):
 model = CNN()
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
-
+model.to(device)
 
 def train():
     epochs = 10
+    total_loss = 0.0
+    total_samples = 0
     for epoch in range(epochs):
         running_loss = 0.0
         for inputs, labels in train_loader:
@@ -76,8 +78,10 @@ def train():
             loss.backward()
             optimizer.step()
             running_loss += loss.item()
-            per_loss = (running_loss / len(train_loader.dataset)) * 100
-        print(f"Epoch {epoch+1}, Loss: {running_loss}, Percentage: {per_loss}")
+            total_loss += loss.item() * len(inputs)
+            total_samples += len(inputs)
+        average_loss = (total_loss / total_samples) * 100
+        print(f"Epoch {epoch + 1}, Running Loss: {running_loss}, Average Loss: {average_loss}%")
         test_loss = 0.0
         correct = 0
         total = 0

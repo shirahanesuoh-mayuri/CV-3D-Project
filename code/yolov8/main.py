@@ -77,5 +77,3 @@ if __name__ == "__main__":
     plot(results, 'metrics/accuracy_top1', 'Training Accuracy')
     plot(results, 'train/loss', 'Training Loss')
     plot(results, 'val/loss', 'Validation Loss')
-
-    # Evaluate on the given data

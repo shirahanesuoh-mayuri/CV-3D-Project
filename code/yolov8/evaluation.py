@@ -3,10 +3,11 @@ import cv2
 import os
 from tqdm import tqdm
 
-def read_path(file_pathname, model, name_dict, save_folder):
+# perform image classification on the test dataset
+def test_img(file_pathname, model, name_dict, save_folder):
     file_dir = os.listdir(file_pathname)
 
-    # create new folders
+    # create new folders for storing the categorized images.
     for k, v in name_dict.items():
         name_folder = os.path.join(save_folder, v)
         if not os.path.exists(name_folder):
@@ -44,7 +45,7 @@ def read_path(file_pathname, model, name_dict, save_folder):
             save_img_path = os.path.join(save_folder, class_name, filename)
             cv2.imwrite(save_img_path, img)
 
-            # count the correct number
+            # count TP, TN, FP, FN
             if file_pathname == 'test/Neutral':
                 if class_name == 'Non Drowsy':
                     TN_cur += 1
@@ -67,7 +68,7 @@ if __name__ == '__main__':
 
     TP, TN, FP, FN = 0, 0, 0, 0
     for img_folder in test_folder:
-        TP1, TN1, FP1, FN1 = read_path(img_folder, model, name_dict, save_folder)
+        TP1, TN1, FP1, FN1 = test_img(img_folder, model, name_dict, save_folder)
         TP += TP1
         TN += TN1
         FP += FP1

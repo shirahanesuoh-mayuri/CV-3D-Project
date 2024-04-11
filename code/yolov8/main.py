@@ -6,32 +6,28 @@ import os
 import shutil
 from sklearn.model_selection import train_test_split
 
+# Split the dataset into train and validation datasets first, then store them under the corresponding folder.
 def prepare_datasets(src_folder, dst_folder):
     train_dir = os.path.join(dst_folder, 'train')
     val_dir = os.path.join(dst_folder, 'val')
-    test_dir = os.path.join(dst_folder, 'test')
     os.makedirs(train_dir, exist_ok=True)
     os.makedirs(val_dir, exist_ok=True)
-    os.makedirs(test_dir, exist_ok=True)
 
     classes = ['Drowsy', 'Non Drowsy']
     for cls in classes:
         os.makedirs(os.path.join(train_dir, cls), exist_ok=True)
         os.makedirs(os.path.join(val_dir, cls), exist_ok=True)
-        os.makedirs(os.path.join(test_dir, cls), exist_ok=True)
 
         class_dir = os.path.join(src_folder, cls)
         images = [os.path.join(class_dir, img) for img in os.listdir(class_dir) if img.lower().endswith(('png', 'jpg', 'jpeg'))]
-        train_data, test_tmp = train_test_split(images, test_size=0.2, random_state=42)
-        test_data, val_data = train_test_split(test_tmp, test_size=0.5, random_state=42)
+        train_data, val_data = train_test_split(images, test_size=0.2, random_state=42)
 
         for img in train_data:
             shutil.copy(img, os.path.join(train_dir, cls, os.path.basename(img)))
         for img in val_data:
             shutil.copy(img, os.path.join(val_dir, cls, os.path.basename(img)))
-        for img in test_data:
-            shutil.copy(img, os.path.join(test_dir, cls, os.path.basename(img)))
 
+# train the model
 def train(model):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -44,9 +40,9 @@ def train(model):
                 save=True,
                 save_period=10,
                 device=device,
-                optimizer='Adam',
-                save_txt=True)
+                optimizer='Adam')
 
+# A method to plot line graphs
 def plot(data, metrics, label):
     folder_path = 'img'
     if not os.path.exists(folder_path):

@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bfb8d7b-9c99-4f11-a36f-457ac96e0208" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/yolov8/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/yolov8/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/yolov8/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/yolov8/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/yolov8/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/yolov8/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/yolov8/.idea/yolov8.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/yolov8/evaluation.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/yolov8/evaluation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/yolov8/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/yolov8/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +20,10 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/code/yolov8/evaluation.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/code/yolov8/main.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2ejkYr2JByCMi2mQTwSCJuXEiaT" />
   <component name="ProjectViewState">
@@ -84,8 +81,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.main" />
       <item itemvalue="Python.evaluation" />
+      <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list>
@@ -115,5 +112,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

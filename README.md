@@ -1,3 +1,39 @@
+# Documentation
+
+## Install
+1. Clone the project repository to your local machine:
+```
+git clone https://github.com/shirahanesuoh-mayuri/CV-3D-Project.git
+```
+  
+2. Install the project dependencies
+```
+pip install -r requirements.txt
+```
+
+## Usage
+
+<details>
+<summary>YOLOv8</summary>
+  
+1. Navigate to the yolov8 directory
+```
+cd CV-3D-Project/code/yolov8
+```
+
+2. Train the model
+```
+python main.py
+```
+
+3. Evaluate on the test dataset
+```
+python evaluation.py
+```
+</details>
+
+
+
 # Data Source
 The first two datasets are used as our training dataset, the third one is our test dataset:
 

@@ -6,4 +6,4 @@ tqdm==4.66.2
 ultralytics==8.1.47
 opencv-python==4.8.0.76
 sklearn==1.2.1
-dlib~=19.24.2
+dlib==19.24.2

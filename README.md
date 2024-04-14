@@ -14,6 +14,26 @@ pip install -r requirements.txt
 ## Usage
 
 <details>
+<summary>YOLOv5</summary>
+  
+1. Navigate to the yolov8 directory
+```
+cd CV-3D-Project/code/yolov5
+```
+
+2. Train the model
+```
+python train.py
+```
+
+3. Evaluate on the test dataset
+```
+python evaluation.py
+```
+</details>
+
+
+<details>
 <summary>YOLOv8</summary>
   
 1. Navigate to the yolov8 directory
